@@ -9,14 +9,14 @@ import sys
 import subprocess
 
 def conf(pac, rdiff):
-  conff = open('/home/d/python/aardback/aard.conf', 'w')
+  conff = open('/home/d/python/aardback/scripts/aard.conf', 'w')
   conff.write('#!/usr/bin/sh\n\n')
   conff.write(pac+'\n')
+  conff.write(rdiff+'\n')
   conff.close()
-  subprocess.call('./pyrdy.conf')
 
 def main(): #probably want to put configuration and state in here
-  path1 = 'export PAC=/home/d/python/aardback/out/'
+  path1 = 'export PAC=/home/d/python/aardback/scripts/out/'
   path2 = 'export RDI=/home/d/Backup/'
   conf(path1, path2)
   
