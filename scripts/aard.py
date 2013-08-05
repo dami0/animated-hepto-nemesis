@@ -9,21 +9,29 @@ import sys
 import subprocess
 
 def conf(pac, rdiff):
-  conff = open('/home/d/python/aardback/scripts/aard.conf', 'w')
-  conff.write('#!/usr/bin/sh\n\n')
+  conff = open('./aard.conf', 'w')
+  conff.write('#!/usr/bin/bash\n\n')
   conff.write(pac+'\n')
   conff.write(rdiff+'\n')
   conff.close()
 
-def main(): #probably want to put configuration and state in here
-  path1 = 'export PAC=/home/d/python/aardback/scripts/out/'
-  path2 = 'export RDI=/home/d/Backup/'
-  conf(path1, path2)
-  
+def pacman():
   subprocess.call('./pacbac.sh')
   print 'Exported list of packages for pacman.'
 
+def rdiff():
+  subprocess.call('./rdbac.sh')
+  print 'Rdiff-backup has performed its thing.'
 
+def main(): #probably want to put configuration and state in here
+  path1 = 'PAC=/home/d/.backup/'
+  path2 = 'RDI=/home/d/.backup/'
+
+  conf(path1, path2)
+
+  pacman()
+
+  rdiff()
 
 if __name__ == '__main__': # boilerplate run if called as program
   main()
