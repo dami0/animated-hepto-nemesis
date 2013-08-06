@@ -8,11 +8,10 @@
 import sys
 import subprocess
 
-def conf(pac, rdiff):
+def conf(pac): #create config file for the shell scripts
   conff = open('./aard.conf', 'w')
   conff.write('#!/usr/bin/bash\n\n')
   conff.write(pac+'\n')
-  conff.write(rdiff+'\n')
   conff.close()
 
 def pacman():
@@ -24,14 +23,18 @@ def rdiff():
   print 'Rdiff-backup has performed its thing.'
 
 def main(): #probably want to put configuration and state in here
-  path1 = 'PAC=/home/d/.backup/'
-  path2 = 'RDI=/home/d/.backup/'
+  path = 'DIR=/home/d/.backup/'
+  if len(sys.argv) >= 2:
+    if 'd' in sys.argv[1]:
+      path = 'DIR='+raw_input('DIR=')
 
-  conf(path1, path2)
+  conf(path)
 
   pacman()
 
-  rdiff()
+  if len(sys.argv) >= 2:
+    if 'f' in sys.argv[1]:
+      rdiff()
 
 if __name__ == '__main__': # boilerplate run if called as program
   main()
