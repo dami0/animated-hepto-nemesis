@@ -9,7 +9,7 @@ import sys
 import subprocess
 
 def conf(pac): #create config file for the shell scripts
-  conff = open('./aard.conf', 'w')
+  conff = open('./conf.dat', 'w')
   conff.write('#!/usr/bin/bash\n\n')
   conff.write(pac+'\n')
   conff.close()
@@ -28,9 +28,9 @@ def main(): #probably want to put configuration and state in here
     if 'd' in sys.argv[1]:
       path = 'DIR='+raw_input('DIR=')
 
-  conf(path)
+#  conf(path)
 
-  pacman()
+#  pacman()
 
   if len(sys.argv) >= 2:
     if 'f' in sys.argv[1]:
