@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-. ./aard.conf
+. ./conf.dat
 
 cd $DIR
 
