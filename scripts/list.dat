@@ -1,0 +1,6 @@
+/etc/pacman.d
+/etc/ssh
+/etc/samba
+**pacman.conf
+**vsftpd.conf
+**fstab
