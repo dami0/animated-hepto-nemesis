@@ -1,7 +1,0 @@
-/etc/pacman.d
-/etc/ssh
-/etc/samba
-**pacman.conf
-**vsftpd.conf
-**fstab
-/var/cache/pacman/pkg
