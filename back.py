@@ -11,7 +11,9 @@ import subprocess
 def conf(pac): #create config file for the shell scripts
   conff = open('./conf.dat', 'w')
   conff.write('#!/usr/bin/bash\n\n')
-  conff.write(pac+'\n')
+  conff.write(pac+'\n\n')
+  conff.write('if [ ! -d "$DIR" ]; then\n')
+  conff.write('mkdir $DIR\nfi')
   conff.close()
 
 def pacman():
@@ -27,10 +29,14 @@ def main(): #probably want to put configuration and state in here
   if len(sys.argv) >= 2:
     if 'd' in sys.argv[1]:
       path = 'DIR='+raw_input('DIR=')
+  if len(sys.argv) >= 3:
+    open('', 'rU')
 
-#  conf(path)
+  conf(path)
 
-#  pacman()
+  if len(sys.argv) >= 2:
+    if 'p' in sys.argv[1]:
+      pacman()
 
   if len(sys.argv) >= 2:
     if 'f' in sys.argv[1]:
