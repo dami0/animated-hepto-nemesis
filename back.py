@@ -9,6 +9,7 @@
 
 import sys
 import subprocess
+import re
 
 def conf(pac):   #create config file for the shell scripts
   conff = open('./conf.dat', 'w')
@@ -19,25 +20,30 @@ def conf(pac):   #create config file for the shell scripts
   conff.close()
 
 def pacman():    #pacman stuff
-  subprocess.call('./pacbac.sh')
+  subprocess.call('./scripts/pacbac.sh')
   print 'Exported list of packages for pacman.'
 
 def rdiff():     #rdiff-backup stuff
-  subprocess.call('./rdbac.sh')
+  subprocess.call('./scripts/rdbac.sh')
   print 'Rdiff-backup has performed its thing.'
 
-def printhelp()
-  print 'Not implemented yet.'
-  exit
-  
+def printhelp():
+  helpme = open('./help.me', 'r')
+  for line in helpme.readlines():
+    print line.rstrip('\n')
+#  sys.stdout.write(helpme.read())
+  helpme.close()
+  exit()
+
 def main():      #main program
+  ne = 0
   if len(sys.argv) > 1:
     ne = 1
-    if 'h' in sys.argv[1]:
+    match = re.findall('[^-dfphn]', sys.argv[1])
+    if match:
+      print 'Unknown option(s): ' + str(match) + '\n'
       printhelp()
-    elif not 'd' in arg and not 'f' in arg and not 'p' in arg:
-      print 'Unknown option(s):' + sys.argv[1]
-      printhelp()
+    if 'h' in sys.argv[1]: printhelp()
 
   path = 'DIR=/home/d/.backup/'
   if ne and 'd' in sys.argv[1]:
@@ -48,7 +54,7 @@ def main():      #main program
   if ne:
     if 'p' in sys.argv[1]:
       pacman()
-    if 'p' in sys.argv[1]:
+    if 'f' in sys.argv[1]:
       rdiff()
 
 if __name__ == '__main__': # boilerplate run if called as program
