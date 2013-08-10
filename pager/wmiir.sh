@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-export DISPLAY=:0
+export DISPLAY=:0 #thanks to EmoSpice, it actually works now
 
 COUNTER=0
 while [  $COUNTER -lt 5 ]; do
