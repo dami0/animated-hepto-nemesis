@@ -1,7 +1,0 @@
-#!/usr/bin/bash
-
-DIR=/home/d/.backup/
-
-if [ ! -d "$DIR" ]; then
-mkdir $DIR
-fi
