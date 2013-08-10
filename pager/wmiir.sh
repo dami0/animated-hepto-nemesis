@@ -1,4 +1,6 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
+
+export DISPLAY=:0
 
 wmiir create /rbar/note &
 echo $1 | wmiir write /rbar/note
