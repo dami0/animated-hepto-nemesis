@@ -27,20 +27,6 @@
 #include <sys/fcntl.h>
 
 int
-main(int argc, const char **argv) {
-
-    int fd = 1, act;
-
-    fd = open("in", O_WRONLY); /* pipe opened for reading */
-    if (fd > 0) { 
-        act = operations(fd);
-        printf("The magic number is: %d\n", act);  
-    } else if(fd < 0){ 
-        fputs("cannot open pipe\n", stderr);
-    }
-    return 0;
-}
-int
 operations(int file_desc) {
 
     char buf[256];
@@ -70,4 +56,19 @@ operations(int file_desc) {
         }
 
     }
+}
+
+int
+main(int argc, const char **argv) {
+
+    int fd = 1, act;
+
+    fd = open("in", O_WRONLY); /* pipe opened for reading */
+    if (fd > 0) { 
+        act = operations(fd);
+        printf("The magic number is: %d\n", act);  
+    } else if(fd < 0){ 
+        fputs("cannot open pipe\n", stderr);
+    }
+    return 0;
 }
