@@ -54,8 +54,8 @@ operations(int file_desc) {
             perror("write");
             exit(1);
         }
-
     }
+    return -1;
 }
 
 int
